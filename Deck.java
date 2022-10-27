@@ -90,7 +90,7 @@ public class Deck
      */
     public void addCardToDeck(Card cardToAdd) {
         // To be written
-        
+        this.cards.add(cardToAdd);
         
     }
     
