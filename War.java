@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.Collections;  
 /**
  * War game class
  *
@@ -22,8 +23,8 @@ public class War
         deck.initializeNewDeck();
         deck.shuffle();
         Deck[] halves = deck.dealDeck();
-        Deck p1 = halves[1];
-        Deck p2 = halves[2];
+        Deck p1 = halves[0];
+        Deck p2 = halves[1];
         boolean gameStatus = true;
         
         
@@ -38,7 +39,7 @@ public class War
      * from the War flowchart you created for this game
      */
     public void runEventLoop() {
-        while(p1.getDeckSize() > 0 && p2.getDeckSize() >0) {
+        while(p1.getDeckSize() > 0 && p2.getDeckSize() > 0) {
             Card p1Card = p1.dealCardFromDeck();
             Card p2Card = p2.dealCardFromDeck();
             int round = 1;
@@ -46,32 +47,54 @@ public class War
             System.out.println("Player 1 Cards: " + p1.getDeckSize());
             System.out.println("Player 2 Cards: " + p2.getDeckSize());
             System.out.println();
-            System.out.println();
+            System.out.println("Player 1 Card: " + p1Card.getFace() + " of " +p1Card.getSuit());
+            System.out.println("Player 2 Card: " + p2Card.getFace() + " of " + p2Card.getSuit());
             
             if(p1Card.getRank() > p2Card.getRank()) {
-               System.out.println("Player 1 Wins!");
+               System.out.println("Player 1 Wins This Round!");
                p1.addCardToDeck(p1Card);
                p1.addCardToDeck(p2Card);
             }
             else if(p2Card.getRank() > p1Card.getRank()) {
-                System.out.println("Player 2 Wins!");
+                System.out.println("Player 2 Wins This Round!");
                 p2.addCardToDeck(p2Card);
                 p2.addCardToDeck(p1Card);
             }
             else {
                 System.out.println("War!");
+                Deck warDeckOne = new Deck();
+                Deck warDeckTwo = new Deck();
+                
+                warDeckOne.addCardToDeck(p1Card);
+                warDeckTwo.addCardToDeck(p2Card);
+                
+                for(int i = 0; i == 2; i++) {
+                    warDeckOne.addCardToDeck(p1.dealCardFromDeck());
+                    warDeckTwo.addCardToDeck(p2.dealCardFromDeck());
+                }
+                
+                if(p1.dealCardFromDeck().getRank() > p2.dealCardFromDeck().getRank()) {
+                    p1.addAll();
+                    
+                    
+                }
+                
+                
+                
             }
             round++;
             System.out.println();
         }
         
         if(p1.getDeckSize() == 0) {
-            System.out.println("Player 1 Wins!");
+            System.out.println("Player 1 Wins The Game!");
         }
         else {
-            System.out.println("Player 2 Wins!");
+            System.out.println("Player 2 Wins The Game!");
         }
     }
+    
+ 
     
     /**
      * The main method is called when Java starts your program
