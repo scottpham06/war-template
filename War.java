@@ -13,6 +13,7 @@ public class War
 
     String playerOneCards;
     String playerTwoCards;
+    
     /**
      * Constructor for the game
      * Include your initialization here -- card decks, shuffling, etc
@@ -30,6 +31,7 @@ public class War
         Deck[] halves = deck.dealDeck();
         Deck p1 = halves[0];
         Deck p2 = halves[1];
+        
 
         // ...then run the event loop
         this.runEventLoop(p1, p2);
@@ -41,11 +43,13 @@ public class War
      */
     public void runEventLoop(Deck p1, Deck p2) {
         int round = 1;
+        boolean isWar =false;
 
         while(p1.getDeckSize() > 0 && p2.getDeckSize() > 0  ) {
+            isWar = false;
             playerOneCards = "Player 1 Cards: " + p1.getDeckSize();
             playerTwoCards = "Player 2 Cards: " + p2.getDeckSize();
-
+            
             System.out.println("Round: " +round);
             System.out.println(playerOneCards);
             System.out.println(playerTwoCards);
@@ -79,6 +83,8 @@ public class War
                     warDeckTwo.add(p2Card);
 
                     while(p1Card.getRank() == p2Card.getRank()) {
+                        isWar = true;
+                        
 
                         System.out.println("War!");
                         System.out.println();
@@ -148,7 +154,7 @@ public class War
             }
         }
         if(p1.getDeckSize() > p2.getDeckSize()) {
-            if( p2.getDeckSize() <4) {
+            if( isWar == true) {
                 System.out.println("Final Cards: ");
                 System.out.println(this.playerOneCards);
                 System.out.println(this.playerTwoCards);
@@ -164,7 +170,7 @@ public class War
             }
         }
         else if (p2.getDeckSize() > p1.getDeckSize()) {
-            if(p1.getDeckSize() < 4) {
+            if(isWar ==true) {
                 System.out.println("Final Cards: ");
                 System.out.println(this.playerOneCards);
                 System.out.println(this.playerTwoCards);
