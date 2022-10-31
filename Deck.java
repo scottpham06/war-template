@@ -74,10 +74,10 @@ public class Deck
     public Card dealCardFromDeck() {
         // To be written 
         Card theCard;
-        int topcard = 0;
-        if(topcard < cards.size()) {
-            theCard = cards.get(topcard);
-            topcard++;
+        int topCard = 0;
+        if(topCard < cards.size()) {
+            theCard = cards.get(topCard);
+            topCard++;
             cards.remove(theCard);
             return theCard;
         }
