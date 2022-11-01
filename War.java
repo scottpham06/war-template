@@ -52,7 +52,7 @@ public class War
             System.out.println("Round: " +round);
             System.out.println(playerOneCards);
             System.out.println(playerTwoCards);
-            
+
             Card p1Card = playerOne.dealCardFromDeck();
             Card p2Card = playerTwo.dealCardFromDeck();
 
@@ -83,7 +83,6 @@ public class War
                     warDeckTwo.add(p2Card);
 
                     while(p1Card.getRank() == p2Card.getRank()) {
-                        
 
                         System.out.println("War!");
                         System.out.println();
@@ -148,52 +147,52 @@ public class War
 
                 break;
             }
+            
             if (round >300) {
                 break;
 
             }
         }
-        
+
         if(playerOne.getDeckSize() > playerTwo.getDeckSize()) {
             if( notEnoughCards == true ) {
-                System.out.println("Final Cards: ");
-                System.out.println(this.playerOneCards);
-                System.out.println(this.playerTwoCards);
-                System.out.println();
+                printPreviousCards();
                 System.out.println("Player 1 Wins The Game!");
             }
             else {
-                System.out.println("Final Cards: ");
-                System.out.println("Player 1 Cards: " + playerOne.getDeckSize());
-                System.out.println("Player 2 Cards: " + playerTwo.getDeckSize());
-                System.out.println();
+                printEndCards(playerOne, playerTwo);
                 System.out.println("Player 1 Wins The Game!");
             }
         }
         else if (playerTwo.getDeckSize() > playerOne.getDeckSize()) {
             if(notEnoughCards ==true ) {
-                System.out.println("Final Cards: ");
-                System.out.println(this.playerOneCards);
-                System.out.println(this.playerTwoCards);
-                System.out.println();
+                printPreviousCards();
                 System.out.println("Player 2 Wins The Game!");
             }
             else {
-                System.out.println("Final Cards: ");
-                System.out.println("Player 1 Cards: " + playerOne.getDeckSize());
-                System.out.println("Player 2 Cards: " + playerTwo.getDeckSize());
-                System.out.println();
+                printEndCards(playerOne, playerTwo);
                 System.out.println("Player 2 Wins The Game!");            
             }
         }
         else {
-            System.out.println("Final Cards: ");
-            System.out.println("Player 1 Cards: " + playerOne.getDeckSize());
-            System.out.println("Player 2 Cards: " + playerTwo.getDeckSize());
-            System.out.println();
+            printEndCards(playerOne, playerTwo);
             System.out.println("Game Is A Tie!");
 
         }
+    }
+
+    public void printPreviousCards() {
+        System.out.println("Final Cards: ");
+        System.out.println(this.playerOneCards);
+        System.out.println(this.playerTwoCards);
+        System.out.println();
+    }
+
+    public void printEndCards(Deck playerOne, Deck playerTwo) {
+        System.out.println("Final Cards: ");
+        System.out.println("Player 1 Cards: " + playerOne.getDeckSize());
+        System.out.println("Player 2 Cards: " + playerTwo.getDeckSize());
+        System.out.println();
     }
 
     /**
